@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Trash2, Plus } from 'lucide-react'
 import { customersApi, type ApiCustomer, type CreateCustomerInput } from '../../api/customers'
 import { inventoryApi, type ApiProduct } from '../../api/inventory'
-import { salesApi, type OrderSummary } from '../../api/sales'
+import { salesApi } from '../../api/sales'
 import { schemeApi, type ApiScheme, type SchemeEligibleResponse } from '../../api/scheme'
 import { ApiError, API_BASE } from '../../api/http'
 import { Button, Field, Input, Modal, PageHeader, PageSkeleton, Select, Textarea, usePageLoad } from '../../components/ui/primitives'
@@ -658,7 +658,6 @@ export function FseOrder() {
         items,
       })
       const createdOrder = res.order
-      setOrder(createdOrder)
 
       // 4. Attach Expiry Claim if selected
       if (hasExpiryClaim) {
