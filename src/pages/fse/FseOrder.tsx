@@ -198,7 +198,6 @@ export function FseOrder() {
   const [busy, setBusy] = useState(false)
   const [products, setProducts] = useState<ApiProduct[]>([])
   const [customers, setCustomers] = useState<ApiCustomer[]>([])
-  const [order, setOrder] = useState<OrderSummary | null>(null)
 
   // Step 1 — customer
   const [customerMode, setCustomerMode] = useState<'new' | 'existing'>('existing')
@@ -709,8 +708,8 @@ export function FseOrder() {
       // 6. Set Payment Terms
       const payRes = await salesApi.setPaymentTerms(createdOrder.order_id, {
         payment_type: payMode,
-        advance_cash: advanceCash,
-        advance_credits: advanceCredits,
+        advance_payment_cash: advanceCash,
+        advance_payment_credits: advanceCredits,
         upi_id: upiId || undefined,
       })
 
@@ -1044,7 +1043,7 @@ export function FseOrder() {
             </div>
             <Button
               size="sm"
-              variant="secondary"
+              variant="ghost"
               type="button"
               className="inline-flex items-center gap-1"
               onClick={() => {
